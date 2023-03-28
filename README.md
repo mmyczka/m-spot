@@ -1,2 +1,2 @@
 # m-spot
-Organization system
+Assistance in keeping order
