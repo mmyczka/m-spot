@@ -19,7 +19,7 @@ Finally, "m-spot" is motivated by a focus on simplicity and usability. Many exis
 # Main features in "m-spot" project
 1. A simple search interface to locate an item.
 2. Add items in multiple ways, such as manually entering them, uploading files (CSV, JSON), or handwriting for automatic recognition by the system.
-3. 
+3. Easy rearrangement.
 4. System options with an in-built feature for real-time collaboration between multiple users.
 5. Generate a shopping list based on the current stock levels.
 
@@ -31,3 +31,22 @@ Finally, "m-spot" is motivated by a focus on simplicity and usability. Many exis
 ## 3. Component - REST API
 ![Component2](docs/C4/m-spot-Component-002.png)
 
+# Real-time cooperation
+## 1. Types of cooperation
+* Grant Access: administrator allowing a user full access to the document or project.
+
+* First Access Block: user prevents access for editing from other users after the first user has checked edit mode.
+
+* Partial Block: blocking access only to specific sections or areas of the form.
+
+* Non-blocking: allowing multiple users to access and edit the form simultaneously without restrictions.
+
+* Turn-Based Access: restricting access to only one user at a time, allowing each user to take turns editing or making changes to the form.
+
+In every mode, all users get updates on all changes to the form.
+
+## 2. Stack
+* Akka Actors
+* Akka HTTP
+* Akka Streams
+* WebSocket
