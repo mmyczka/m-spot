@@ -15,3 +15,19 @@ The primary motivation behind "m-spot" is the personal need for organization. I 
 ## 3. Focus on simplicity and usability
 
 Finally, "m-spot" is motivated by a focus on simplicity and usability. Many existing organization tools are overly complicated or difficult to use, which can be a barrier to adoption. By keeping the system simple and intuitive, "m-spot" aims to make organization accessible to everyone, regardless of their technical expertise or organizational skills.
+
+# Main features in "m-spot" project
+1. A simple search interface to locate an item.
+2. Add items in multiple ways, such as manually entering them, uploading files (CSV, JSON), or handwriting for automatic recognition by the system.
+3. 
+4. System options with an in-built feature for real-time collaboration between multiple users.
+5. Generate a shopping list based on the current stock levels.
+
+# C4 model
+## 1. Container
+![Container](docs/C4/m-spot-Container-001.png)
+## 2. Component - Web Application
+![Component1](docs/C4/m-spot-Component-001.png)
+## 3. Component - REST API
+![Component2](docs/C4/m-spot-Component-002.png)
+

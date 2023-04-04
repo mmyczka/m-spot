@@ -1,0 +1,82 @@
+workspace {
+
+    model {
+        user = person "User" "A user of the m-spot application."
+        files = person "User 2" "A user of the m-spot application."
+        administrator = person "Administrator" "An administrator of the CRUD application."
+
+        crudApplication = softwareSystem "m-spot Application" "Allows users to perform CRUD operations, collaborate in real-time, generate reports, and search data." {
+            webApplication = container "Web Application" "Handles user interactions, form filling, authentication, and real-time collaboration." {
+                tags "Tag 2"
+                authentication = component "Authentication" "Manages user login, registration, and password reset."
+                formFilling = component "Form Filling" "Handles form creation, client-side validation, and server-side validation."
+                realTimeCollaboration = component "Real-time Collaboration" "Implements real-time communication and concurrent editing using Akka's Actor Model and WebSockets."
+
+                user -> authentication "Logs in"
+                user -> formFilling "Fill out the form"
+                formFilling -> realTimeCollaboration "Collaborates in real-time"
+            }
+            restApi = container "REST API" "Provides CRUD operations for the data models, report generation, and database search." {
+                dataModelCRUD = component "Data Model CRUD" "Implements create, read, update, and delete operations for the data models using Doobie."
+                dataImportExport = component "Data Import/Export" "Parses and serializes data in supported formats (e.g., CSV, JSON, XML)."
+                reporting = component "Reporting" "Generates reports."
+                databaseOverview = component "Database Overview" "Displays a dashboard with data visualizations."
+                search = component "Search" "Provides search functionality using database queries."
+
+                webApplication -> this "Consumes"
+            }
+            database = container "Database" "Stores application data, user information, and reporting templates." "PostgreSQL" {
+                tags "Tag 1"
+                restApi -> this "Reads from and writes to"
+            }
+            messageBroker = container "Real-time Updater" "Facilitates communication between components and handles real-time updates." {
+                tags "Tag 3"
+                webApplication -> this "Subscribes to real-time updates"
+                restApi -> this "Publishes real-time updates"
+            }
+        }
+    }
+
+    views {
+        systemContext crudApplication {
+            include *
+            autolayout lr
+        }
+
+        container crudApplication {
+            include *
+            autolayout lr
+        }
+
+        component webApplication {
+            include *
+            autolayout lr
+        }
+
+        component restApi {
+            include *
+            autolayout tb
+        }
+
+        theme default
+        
+        styles {
+            element "Tag 1" {
+                background #1168bd
+                color #ffffff
+                shape Cylinder
+            }
+            element "Tag 2" {
+                background #1168bd
+                color #ffffff
+                shape WebBrowser
+            }     
+            element "Tag 3" {
+                background #1168bd
+                color #ffffff
+                shape Hexagon
+            }
+        }
+    }
+
+}
